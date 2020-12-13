@@ -106,20 +106,6 @@ function getFastestPromise(array) {
  */
 function chainPromises(/* array, action */) {
   throw new Error('Not implemented');
-  // return Promise.resolve(array.reduce((sum, item) => item.then((itemValue) => itemValue).
-  // then((itemValue) => sum.then((sumValue) => action(itemValue, sumValue))),
-  // Promise.resolve('')));
-  // const p = array.reduce((a, item) =>
-  //   item.then((value) => {
-  //   // console.log('33333', value);
-  //   // console.log('44444', a);
-  //   return a.then((aValue) => {
-  //     // console.log('77777', aValue);
-  //     return action(aValue, value);
-  //   });
-  // }), Promise.resolve(''));
-  // console.log(p);
-  // return Promise.resolve(p);
 }
 
 module.exports = {
