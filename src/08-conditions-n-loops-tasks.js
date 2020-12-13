@@ -134,7 +134,8 @@ function doRectanglesOverlap(rect1, rect2) {
   if (rect2.left > rect1.width
     || rect2.width < rect1.left
     || rect2.top > rect1.height
-    || rect2.height < rect1.top) {
+    || rect2.height < rect1.top
+  ) {
     return false;
   }
   return true;
@@ -166,8 +167,11 @@ function doRectanglesOverlap(rect1, rect2) {
  *   { center: { x:0, y:0 }, radius:10 },  { x:10, y:10 }   => false
  *
  */
-function isInsideCircle(/* circle, point */) {
-  throw new Error('Not implemented');
+function isInsideCircle(circle, point) {
+  if ((point.x - circle.center.x) ** 2 + (point.y - circle.center.y) ** 2 < circle.radius ** 2) {
+    return true;
+  }
+  return false;
 }
 
 /**
@@ -181,8 +185,19 @@ function isInsideCircle(/* circle, point */) {
  *   'abracadabra'  => 'c'
  *   'entente' => null
  */
-function findFirstSingleChar(/* str */) {
-  throw new Error('Not implemented');
+function findFirstSingleChar(str) {
+  return str.split('').find((el, index, arr) => {
+    if (
+      !arr.find((e, i) => {
+        if (e === el && index !== i) {
+          return true;
+        }
+        return false;
+      })
+    ) {
+      return el;
+    } return false;
+  });
 }
 
 /**
@@ -207,8 +222,26 @@ function findFirstSingleChar(/* str */) {
  *   5, 3, true, true   => '[3, 5]'
  *
  */
-function getIntervalString(/* a, b, isStartIncluded, isEndIncluded */) {
-  throw new Error('Not implemented');
+function getIntervalString(a, b, isStartIncluded, isEndIncluded) {
+  let str = '';
+  let f = a;
+  let s = b;
+  if (f > s) {
+    const c = f;
+    f = s;
+    s = c;
+  }
+  if (isStartIncluded) {
+    str = `[${f}, ${s}`;
+  } else {
+    str = `(${f}, ${s}`;
+  }
+  if (isEndIncluded) {
+    str += ']';
+  } else {
+    str += ')';
+  }
+  return str;
 }
 
 /**
@@ -223,8 +256,8 @@ function getIntervalString(/* a, b, isStartIncluded, isEndIncluded */) {
  * 'rotator' => 'rotator'
  * 'noon' => 'noon'
  */
-function reverseString(/* str */) {
-  throw new Error('Not implemented');
+function reverseString(str) {
+  return str.split('').reverse().join('');
 }
 
 /**
@@ -264,8 +297,18 @@ function reverseInteger(num) {
  *   5436468789016589 => false
  *   4916123456789012 => false
  */
-function isCreditCardNumber(/* ccn */) {
-  throw new Error('Not implemented');
+function isCreditCardNumber(ccn) {
+  const result = ccn.toString().split('').reduceRight((accumulator, value, index, array) => {
+    let cardNum = parseInt(value, 10);
+    if ((array.length - index) % 2 === 0) {
+      cardNum *= 2;
+      if (cardNum > 9) {
+        cardNum -= 9;
+      }
+    }
+    return parseInt(accumulator, 10) + parseInt(cardNum, 10);
+  });
+  return result % 10 === 0;
 }
 
 /**
