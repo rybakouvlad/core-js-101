@@ -110,14 +110,6 @@ function memoize(func) {
  */
 function retry(/* func, attempts */) {
   throw new Error('Not implemented');
-  // console.log(attempts);
-  // const attempt = attempts;
-  // console.log(attempt);
-  // return function a() {
-  //   return func();
-  // };
-  // console.log(attempts);
-  // return func;
 }
 
 
@@ -146,10 +138,6 @@ function retry(/* func, attempts */) {
  */
 function logger(/* func, logFunc */) {
   throw new Error('Not implemented');
-  // return function a(num) {
-  //   logFunc(func.name, '(', num.toString(), ')', 'starts');
-  //   logFunc(func(num), 'ends');
-  // };
 }
 
 
